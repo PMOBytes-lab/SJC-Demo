@@ -1,0 +1,9 @@
+def test_login_invalid_password():
+    payload = {
+        "email": "user@example.com",
+        "password": "wrong_password"
+    }
+    response = requests.post(f"{BASE_URL}/login", json=payload)
+    
+    assert response.status_code == 401
+    assert response.json().get("error") == "Invalid credentials"
